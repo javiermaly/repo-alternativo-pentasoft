@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<datasources>
+	<local-tx-datasource>
+		
+		<jndi-name>mysqlds</jndi-name>
+		
+		<!-- The driver class -->
+		<driver-class>com.mysql.jdbc.Driver</driver-class> 
+		<connection-url>jdbc:mysql://localhost:3306/jpadb</connection-url>
+		<user-name>root</user-name>
+		<password></password>
+		
+		<!-- The minimum connections in a pool/sub-pool. Pools are lazily constructed on first use -->
+		<min-pool-size>1</min-pool-size>
+		<!-- The maximum connections in a pool/sub-pool -->
+		<max-pool-size>15</max-pool-size>
+		<blocking-timeout-millis>5000</blocking-timeout-millis>
+		<!-- The time before an unused connection is destroyed -->
+		<idle-timeout-minutes>1</idle-timeout-minutes>
+
+		<track-statements />
+			
+	</local-tx-datasource>
+	<local-tx-datasource>
+		
+		<jndi-name>mysqlds-sgti</jndi-name>
+		
+		<!-- The driver class -->
+		<driver-class>com.mysql.jdbc.Driver</driver-class> 
+		<connection-url>jdbc:mysql://localhost:3306/sgtidb</connection-url>
+		<user-name>root</user-name>
+		<password></password>
+		
+		<!-- The minimum connections in a pool/sub-pool. Pools are lazily constructed on first use -->
+		<min-pool-size>1</min-pool-size>
+		<!-- The maximum connections in a pool/sub-pool -->
+		<max-pool-size>15</max-pool-size>
+		<blocking-timeout-millis>5000</blocking-timeout-millis>
+		<!-- The time before an unused connection is destroyed -->
+		<idle-timeout-minutes>1</idle-timeout-minutes>
+
+		<track-statements />
+			
+	</local-tx-datasource>
+</datasources>
