@@ -1,7 +1,9 @@
 package beans;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 
 import javax.persistence.*;
 
@@ -18,14 +20,14 @@ public class Cliente implements Serializable {
 	private int id;
 	private String empresa;
 	private String nombre_RazonSocial;
-	private Long cedula;
-	private Long rut;
+	private long cedula;
+	private long rut;
 	private String telefono;
 	private String direccion;
-	//private Calendar fechaFinGarantia;
-	//private ColTareas colTareas;
-	
-	
+	private @Temporal(TemporalType.DATE)Calendar fechaFinGarantia;
+		
+	@OneToMany(mappedBy="cliente")
+	private List<Tarea> tareas= new ArrayList<Tarea>();
 	
 	private static final long serialVersionUID = 1L;
 
@@ -35,8 +37,8 @@ public class Cliente implements Serializable {
 	
 	
 	public Cliente(int id, String empresa, String nombre_RazonSocial,
-			Long cedula, Long rut, String telefono, String direccion,
-			Calendar fechaFinGarantía) {
+			long cedula, long rut, String telefono, String direccion,
+			Calendar fechaFinGarantia) {
 		super();
 		this.id = id;
 		this.empresa = empresa;
@@ -45,7 +47,20 @@ public class Cliente implements Serializable {
 		this.rut = rut;
 		this.telefono = telefono;
 		this.direccion = direccion;
-	//	this.fechaFinGarantia = fechaFinGarantia;
+		this.fechaFinGarantia = fechaFinGarantia;
+	}
+	
+	public Cliente(int id, String empresa, String nombre_RazonSocial,
+			long cedula, long rut, String telefono, String direccion) {
+		super();
+		this.id = id;
+		this.empresa = empresa;
+		this.nombre_RazonSocial = nombre_RazonSocial;
+		this.cedula = cedula;
+		this.rut = rut;
+		this.telefono = telefono;
+		this.direccion = direccion;
+		
 	}
 
 
@@ -74,19 +89,19 @@ public class Cliente implements Serializable {
 		this.nombre_RazonSocial = nombre_RazonSocial;
 	}
 
-	public Long getCedula() {
+	public long getCedula() {
 		return cedula;
 	}
 
-	public void setCedula(Long cedula) {
+	public void setCedula(long cedula) {
 		this.cedula = cedula;
 	}
 
-	public Long getRut() {
+	public long getRut() {
 		return rut;
 	}
 
-	public void setRut(Long rut) {
+	public void setRut(long rut) {
 		this.rut = rut;
 	}
 
@@ -113,6 +128,26 @@ public class Cliente implements Serializable {
 //	public void setFechaFinGarantía(Calendar fechaFinGarantía) {
 //		this.fechaFinGarantia = fechaFinGarantia;
 //	}
+
+
+	public void setTareas(List<Tarea> tareas) {
+		this.tareas = tareas;
+	}
+
+
+	public List<Tarea> getTareas() {
+		return tareas;
+	}
+
+
+	public void setFechaFinGarantia(Calendar fechaFinGarantia) {
+		this.fechaFinGarantia = fechaFinGarantia;
+	}
+
+
+	public Calendar getFechaFinGarantia() {
+		return fechaFinGarantia;
+	}
 	
 	
    

@@ -5,6 +5,12 @@ import java.util.Calendar;
 
 import javax.persistence.*;
 
+@NamedQueries(value = { 
+		//@NamedQuery(name="tieneSinFechaFin", query="select t from Tiene t where t.fechafin = 0"),
+		
+		
+	})
+	
 /**
  * Entity implementation class for Entity: Tiene
  *
@@ -14,38 +20,41 @@ import javax.persistence.*;
 public class Tiene implements Serializable {
 
 	@Id
-	private Tarea tarea;////////////////////////// VER PARA PONER ESTADO COMO ID COMPUESTA CON TAREA
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	private int id;
+	private @Temporal(TemporalType.DATE) Calendar fechaInicio;
+	private @Temporal(TemporalType.DATE) Calendar fechaFin;	
+	@ManyToOne		//ACA NO SERIA ONE TO MANY????
 	private Estado estado;
-//	private Calendar fechaInicio;
-//	private Calendar fechaFin;
-	
 	
 	private static final long serialVersionUID = 1L;
 
 	public Tiene() {
 		super();
 	}   
-//	public Calendar getFechaInicio() {
-//		return this.fechaInicio;
-//	}
-//
-//	public void setFechaInicio(Calendar fechaInicio) {
-//		this.fechaInicio = fechaInicio;
-//	}   
-//	public Calendar getFechaFin() {
-//		return this.fechaFin;
-//	}
-//
-//	public void setFechaFin(Calendar fechaFin) {
-//		this.fechaFin = fechaFin;
-//	}   
-	public Tarea getTarea() {
-		return this.tarea;
+  
+	
+	public Calendar getFechaInicio() {
+		return fechaInicio;
 	}
 
-	public void setTarea(Tarea tarea) {
-		this.tarea = tarea;
-	}   
+
+	public void setFechaInicio(Calendar fechaInicio) {
+		this.fechaInicio = fechaInicio;
+	}
+
+
+	public Calendar getFechaFin() {
+		return fechaFin;
+	}
+
+
+	public void setFechaFin(Calendar fechaFin) {
+		this.fechaFin = fechaFin;
+	}
+
+
+
 	public Estado getEstado() {
 		return this.estado;
 	}
@@ -53,5 +62,19 @@ public class Tiene implements Serializable {
 	public void setEstado(Estado estado) {
 		this.estado = estado;
 	}
+
+
+	public int getId() {
+		return id;
+	}
+
+
+	public void setId(int id) {
+		this.id = id;
+	}
+	
+	
    
 }
+
+
